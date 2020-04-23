@@ -10,6 +10,7 @@ const UserContainer = styled.div`
   flex-wrap: wrap;
 `;
 const UserWrapper = styled.div`
+  height: 150px;
   width: 30%;
   display: flex;
   justify-content: space-around;
@@ -38,7 +39,7 @@ class User extends React.Component {
               <p>{user.name}</p>
               <p>{user.username}</p>
             </div>
-            <img src={user.avatar}></img>
+            <img src={user.avatar} alt="img"></img>
           </UserWrapper>
         ))}
       </UserContainer>

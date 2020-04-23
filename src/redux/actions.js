@@ -1,14 +1,22 @@
+const Link = "http://77.120.108.119:9999/users/";
+
 export const fetchUsers = () => (dispatch) => {
-  fetch("http://77.120.108.119:9999/users/")
+  fetch(Link)
     .then((res) => res.json())
     .then((res) => {
       dispatch(getUsers(res.data));
     });
 };
 
-export const updateUsers = (payload) => {
-  return { type: "UPDATE_USERS", payload };
-};
+// export const sentUser = () => (dispatch) => {
+//   fetch(Link, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json;charset=utf-8",
+//     },
+//     body: JSON.stringify({}),
+//   });
+// };
 
 export const getUsers = (payload) => {
   return { type: "GET_USERS", payload };

@@ -5,16 +5,7 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE_USERS":
-      return {
-        users: [
-          ...state.users,
-          {
-            name: action.payload.name,
-            username: action.payload.username,
-            avatar: action.payload.avatar,
-          },
-        ],
-      };
+      return state;
     case "GET_USERS": {
       return {
         users: [...action.payload],

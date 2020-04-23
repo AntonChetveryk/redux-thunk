@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { updateUsers } from "../../redux/actions";
+//import { updateUsers } from "../../redux/actions";
 import { connect } from "react-redux";
+
+const Link = "http://77.120.108.119:9999/users/";
 
 const AddUsersWrapper = styled.div`
   background: black;
@@ -45,8 +47,23 @@ class AddUsers extends React.Component {
   };
 
   onClick = (e) => {
+    const {
+      user: { name, username, avatar },
+    } = this.state;
     e.preventDefault();
-    this.props.updateUsers({ ...this.state.user });
+    if (name && username && avatar && username[0] === "@") {
+      fetch(Link, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({ ...this.state.user }),
+      });
+    } else {
+      alert(
+        "Fill in all the fields and the first character of username must be '@'"
+      );
+    }
   };
 
   render() {
@@ -104,6 +121,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { updateUsers };
+//const mapDispatchToProps = { updateUsers };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);
+export default connect(mapStateToProps)(AddUsers);
