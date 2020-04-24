@@ -5,7 +5,24 @@ import { connect } from "react-redux";
 
 const Link = "http://77.120.108.119:9999/tweets/";
 
-const TweetsWrapper = styled.div``;
+const TweetsWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`;
+const TweetCard = styled.div`
+  background: black;
+  color: white;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 30%;
+  margin: 5px;
+  & img {
+    display: block;
+    width: 80%;
+    margin: auto;
+  }
+`;
 
 class Tweets extends React.Component {
   state = {
@@ -15,7 +32,10 @@ class Tweets extends React.Component {
   componentDidMount() {
     fetch(Link)
       .then((res) => res.json())
-      .then((res) => this.setState({ tweets: res.data }));
+      .then((res) => {
+        console.log(res.data);
+        return this.setState({ tweets: res.data });
+      });
   }
 
   render() {
@@ -23,9 +43,10 @@ class Tweets extends React.Component {
     return (
       <TweetsWrapper>
         {tweets.map((tweet) => (
-          <div key={tweet.id}>
+          <TweetCard key={tweet.id}>
             <p>{tweet.content}</p>
-          </div>
+            <img src={tweet.image} alt="img"></img>
+          </TweetCard>
         ))}
       </TweetsWrapper>
     );
