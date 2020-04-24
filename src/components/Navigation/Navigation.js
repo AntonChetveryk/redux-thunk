@@ -23,6 +23,9 @@ export const Navigation = (props) => {
         <NavItem>
           <Link to="/add-users">Add users</Link>
         </NavItem>
+        <NavItem>
+          <Link to="/tweets">Tweets</Link>
+        </NavItem>
       </Nav>
     </NavigationWrapper>
   );

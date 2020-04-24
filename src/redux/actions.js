@@ -8,7 +8,7 @@ export const fetchUsers = () => (dispatch) => {
     });
 };
 
-// export const sentUser = () => (dispatch) => {
+// export const updateUsers = () => (dispatch) => {
 //   fetch(Link, {
 //     method: "POST",
 //     headers: {
