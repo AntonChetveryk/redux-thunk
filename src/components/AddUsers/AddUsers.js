@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-//import { updateUsers } from "../../redux/actions";
+import { addUser } from "../../redux/actions";
 import { connect } from "react-redux";
-
-const Link = "http://77.120.108.119:9999/users/";
 
 const AddUsersWrapper = styled.div`
   background: black;
@@ -50,15 +48,10 @@ class AddUsers extends React.Component {
     const {
       user: { name, username, avatar },
     } = this.state;
+
     e.preventDefault();
     if (name && username && avatar && username[0] === "@") {
-      fetch(Link, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify({ ...this.state.user }),
-      });
+      addUser(this.state.user);
     } else {
       alert(
         "Fill in all the fields and the first character of username must be '@'"
@@ -121,6 +114,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-//const mapDispatchToProps = { updateUsers };
+const mapDispatchToProps = { addUser };
 
-export default connect(mapStateToProps)(AddUsers);
+export default connect(mapStateToProps, mapDispatchToProps)(AddUsers);

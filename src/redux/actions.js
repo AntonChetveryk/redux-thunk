@@ -8,15 +8,16 @@ export const fetchUsers = () => (dispatch) => {
     });
 };
 
-// export const updateUsers = () => (dispatch) => {
-//   fetch(Link, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//     body: JSON.stringify({}),
-//   });
-// };
+export const addUser = (user) => {
+  console.log("addUser");
+  fetch(Link, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify({ ...user }),
+  });
+};
 
 export const getUsers = (payload) => {
   return { type: "GET_USERS", payload };

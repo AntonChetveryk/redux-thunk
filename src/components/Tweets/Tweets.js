@@ -7,15 +7,26 @@ const Link = "http://77.120.108.119:9999/tweets/";
 
 const TweetsWrapper = styled.div``;
 
-fetch(Link)
-  .then((res) => res.json())
-  .then((res) => console.log(res.data));
-
 class Tweets extends React.Component {
+  state = {
+    tweets: [],
+  };
+
+  componentDidMount() {
+    fetch(Link)
+      .then((res) => res.json())
+      .then((res) => this.setState({ tweets: res.data }));
+  }
+
   render() {
+    const { tweets } = this.state;
     return (
       <TweetsWrapper>
-        <div>Tweets</div>
+        {tweets.map((tweet) => (
+          <div key={tweet.id}>
+            <p>{tweet.content}</p>
+          </div>
+        ))}
       </TweetsWrapper>
     );
   }

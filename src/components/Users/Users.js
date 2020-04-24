@@ -30,11 +30,11 @@ class User extends React.Component {
   }
 
   render() {
-    const { users } = this.props;
+    const { users } = this.props.usersReducer;
     return (
       <UserContainer>
-        {users.map((user) => (
-          <UserWrapper key={user.username}>
+        {users.map((user, index) => (
+          <UserWrapper key={index}>
             <div>
               <p>{user.name}</p>
               <p>{user.username}</p>
